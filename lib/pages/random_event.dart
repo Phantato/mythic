@@ -17,7 +17,7 @@ class _RandomEventState extends State<RandomEvent> {
   @override
   void initState() {
     super.initState();
-    _createEvent();
+    _generateEvent();
   }
 
   @override
@@ -28,7 +28,7 @@ class _RandomEventState extends State<RandomEvent> {
         Padding(
             padding: EdgeInsets.only(right: 10),
             child: ElevatedButton(
-              onPressed: _createEvent,
+              onPressed: _generateEvent,
               child: Text('随机事件'),
             )),
         _Event(focus: focus, action: action, subject: subject),
@@ -36,7 +36,7 @@ class _RandomEventState extends State<RandomEvent> {
     );
   }
 
-  _createEvent() {
+  _generateEvent() {
     setState(() {
       focus = random.nextInt(100);
       action = random.nextInt(100);
@@ -46,32 +46,35 @@ class _RandomEventState extends State<RandomEvent> {
 }
 
 class _Event extends StatelessWidget {
-  const _Event(
-      {Key? key,
-      required this.focus,
-      required this.action,
-      required this.subject})
-      : super(key: key);
+  const _Event({
+    Key? key,
+    required this.focus,
+    required this.action,
+    required this.subject,
+  }) : super(key: key);
 
   final int focus, action, subject;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('事件焦点：${_transFocus(focus)}'),
-        Divider(),
-        Row(
+    return Container(
+        width: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('行动：${_transAction(action)}'),
-            VerticalDivider(),
-            Text('主题：${_transSubject(subject)}')
+            Text('事件焦点：${_transFocus(focus)}'),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('行动：${_transAction(action)}'),
+                VerticalDivider(),
+                Text('主题：${_transSubject(subject)}')
+              ],
+            )
           ],
-        )
-      ],
-    );
+        ));
   }
 
   static const _focus = [
@@ -93,7 +96,7 @@ class _Event extends StatelessWidget {
     '开始',
     '忽视',
     '战斗',
-    '招聘',
+    '招募',
     '胜利',
     '违反',
     '反对',
@@ -107,20 +110,20 @@ class _Event extends StatelessWidget {
     '询问',
     '对抗',
     '移动',
-    '废物',
+    '浪费',
     '休战',
     '发布',
-    '交朋友',
-    '法官',
-    '沙漠',
+    '交友',
+    '评判',
+    '背弃',
     '支配',
     '拖延',
-    '赞美',
+    '称赞',
     '分开',
-    '拿',
-    '休息',
+    '拿取',
+    '打破',
     '治愈',
-    '延迟',
+    '延缓',
     '停止',
     '谎言',
     '返回',
@@ -130,20 +133,20 @@ class _Event extends StatelessWidget {
     '赐予',
     '推迟',
     '暴露',
-    '讨价还价',
+    '还价',
     '监禁',
     '释放',
     '庆祝',
     '发展',
     '旅行',
-    '块',
+    '阻塞',
     '伤害',
     '贬低',
-    '过度放纵',
-    '休会',
+    '放纵',
+    '暂修',
     '逆境',
-    '杀',
-    '中断',
+    '杀害',
+    '打乱',
     '篡夺',
     '创造',
     '背叛',
@@ -152,30 +155,30 @@ class _Event extends StatelessWidget {
     '压迫',
     '检查',
     '伏击',
-    '间谍',
+    '刺探',
     '附加',
     '携带',
     '打开',
-    '粗心大意',
-    '废墟',
+    '粗心',
+    '毁坏',
     '奢侈',
-    '把戏',
+    '唬骗',
     '到达',
     '提议',
     '划分',
     '拒绝',
-    '不信任',
+    '怀疑',
     '欺骗',
     '残忍',
-    '不宽容',
+    '不容忍',
     '信任',
     '兴奋',
     '活动',
-    '助攻',
+    '协助',
     '关怀',
     '疏忽',
     '激情',
-    '努力工作',
+    '努力',
     '控制',
     '吸引',
     '失败',
@@ -184,7 +187,7 @@ class _Event extends StatelessWidget {
     '诉讼',
     '争议',
     '惩罚',
-    '指南',
+    '指导',
     '变换',
     '推翻',
     '压迫',
@@ -201,7 +204,7 @@ class _Event extends StatelessWidget {
     '盟友',
     '敌人',
     '邪恶',
-    '好',
+    '善良',
     '情绪',
     '反对',
     '战争',

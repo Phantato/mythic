@@ -18,10 +18,8 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final pagesList = [
     OraclePage(),
-    Text('1'),
-    Text('2'),
-    Text('3'),
-    Text('4'),
+    StoryPage(),
+    WorldPage(),
   ];
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -33,11 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
       PageController(initialPage: 0, keepPage: true);
 
   final _titles = [
-    Text('Oracle'),
-    Text('Threads'),
-    Text('NPCs'),
-    Text('Locations'),
-    Text('Screens'),
+    Text('神谕'),
+    Text('故事'),
+    Text('世界'),
   ];
 
   @override
@@ -64,33 +60,20 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
-        // backgroundColor: Color.,
-        // selectedItemColor: Colors.white,
-        // unselectedItemColor: Colors.white.withOpacity(.6),
-        // selectedFontSize: 14,
-        // unselectedFontSize: 14,
         onTap: (value) => _pageController.animateToPage(value,
             duration: Duration(milliseconds: 300), curve: Curves.ease),
         items: [
           BottomNavigationBarItem(
-            label: 'Oracle',
+            label: '神谕',
             icon: Icon(RpgIcons.perspective_dice_random),
           ),
           BottomNavigationBarItem(
-            label: 'Threads',
-            icon: Icon(RpgIcons.trophy),
-          ),
-          BottomNavigationBarItem(
-            label: 'NPCs',
-            icon: Icon(RpgIcons.player),
-          ),
-          BottomNavigationBarItem(
-            label: 'Locations',
-            icon: Icon(RpgIcons.wooden_sign),
-          ),
-          BottomNavigationBarItem(
-            label: 'Screens',
+            label: '故事',
             icon: Icon(RpgIcons.book),
+          ),
+          BottomNavigationBarItem(
+            label: '世界',
+            icon: Icon(RpgIcons.player),
           ),
         ],
       ),

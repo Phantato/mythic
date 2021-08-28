@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:infinite_listview/infinite_listview.dart';
 
+import '../model/fate_model.dart';
+
 class FateChart extends StatefulWidget {
   const FateChart({Key? key}) : super(key: key);
 
@@ -11,8 +13,6 @@ class FateChart extends StatefulWidget {
 }
 
 class _FateChartState extends State<FateChart> {
-  int oddsFactor = 4;
-  int chaosFactor = 4;
   int? result;
 
   @override
@@ -56,19 +56,13 @@ class _FateChartState extends State<FateChart> {
             )
           ],
         ),
+        ElevatedButton(onPressed: _generateResult, child: Text('询问')),
         if (result != null) _Result(result: result!),
-        ElevatedButton(
-            onPressed: () {
-              print(oddsFactor);
-              print(chaosFactor);
-              setState(_getResult);
-            },
-            child: Text('询问')),
       ]),
     );
   }
 
-  void _getResult() {
+  void _generateResult() {
     int predict = Random(DateTime.now().millisecondsSinceEpoch).nextInt(100);
     final benchMark = _fateTable[oddsFactor][chaosFactor];
     if (predict < benchMark) {
@@ -88,6 +82,7 @@ class _FateChartState extends State<FateChart> {
     if (predict ~/ 10 == predict % 10 && predict % 10 <= chaosFactor + 1) {
       result = result! | 4;
     }
+    setState(() {});
   }
 
   static const _oddLabels = [
@@ -116,17 +111,17 @@ class _FateChartState extends State<FateChart> {
     '9',
   ];
   static const _fateTable = [
-    [50, 25, 15, 10, 5, 5, 0, 0, -20],
-    [75, 50, 35, 25, 15, 10, 5, 5, 0],
-    [85, 65, 50, 45, 25, 15, 10, 5, 5],
-    [90, 75, 55, 50, 35, 20, 15, 10, 5],
-    [95, 85, 75, 65, 50, 35, 25, 15, 10],
-    [95, 90, 85, 80, 65, 50, 45, 25, 20],
-    [100, 95, 90, 85, 75, 55, 50, 35, 25],
-    [105, 95, 95, 90, 85, 75, 65, 50, 45],
-    [115, 100, 95, 95, 90, 80, 75, 55, 50],
-    [125, 110, 95, 95, 90, 85, 80, 65, 55],
-    [145, 130, 100, 100, 95, 95, 90, 85, 80],
+    [-20, 0, 0, 5, 5, 10, 15, 25, 50],
+    [0, 5, 5, 10, 15, 25, 35, 50, 75],
+    [5, 5, 10, 15, 25, 45, 59, 65, 85],
+    [5, 10, 15, 20, 35, 50, 55, 75, 90],
+    [10, 15, 25, 35, 50, 65, 75, 85, 95],
+    [20, 25, 45, 50, 65, 80, 85, 90, 95],
+    [25, 35, 50, 55, 75, 85, 90, 95, 100],
+    [45, 50, 65, 75, 85, 90, 95, 95, 105],
+    [50, 55, 75, 80, 90, 95, 95, 100, 115],
+    [55, 65, 80, 85, 90, 95, 95, 110, 125],
+    [80, 85, 90, 95, 95, 100, 100, 130, 145],
   ];
 }
 
