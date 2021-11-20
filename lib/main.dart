@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'db/db.dart';
 import 'icons/icons.dart';
 import 'pages/pages.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initDatabase();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
